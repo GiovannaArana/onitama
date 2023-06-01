@@ -62,6 +62,20 @@ public class Player {
      * @exception InvalidCardException Caso a carta não esteja na mão do jogador e/ou na mesa
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException {
-        // TODO: implements swapCard method
+        // TODO: assure that newCard is in the table
+        Card[] playerDeck = getCards();
+        boolean foundOldCard = false;
+
+        for (int i = 0; i < playerDeck.length; i++) {
+            if (playerDeck[i] == oldCard) {
+                playerDeck[i] = newCard;
+                foundOldCard = true;
+                break;
+            }
+        }
+
+        if (!foundOldCard) {
+            throw new InvalidCardException("Error in oldCard attribution");
+        }
     }
 }
